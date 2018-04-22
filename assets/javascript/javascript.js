@@ -57,9 +57,8 @@ var game = new Hangman();
 //---------------------------------------------------------------------------------------
 //listen for user input and make sure 
 document.onkeyup = function(event) {
-	$("#words").focus();
-	var userInput = event.key;
 	
+	var userInput = event.key;
 
 
 	if (!game.Restart) {
