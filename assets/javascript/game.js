@@ -1,4 +1,90 @@
 //Set the variables for the automobile hangman game
+var hangmanStages = [
+	`
+	`,
+	`
+	|
+	|
+	|
+	|
+	|
+	|
+	|
+	`,
+	`
+	|---------
+	|
+	|
+	|
+	|
+	|
+	|
+	`,
+	`
+	|---------
+	|    |
+	|
+	|
+	|
+	|
+	|
+	`,
+	`
+	|---------
+	|    |
+	|    O
+	|
+	|
+	|
+	|
+	`,
+	`
+	|---------
+	|    |
+	|    O
+	|    |
+	|
+	|
+	|
+	`,
+	`
+	|---------
+	|    |
+	|    O
+	|    |-
+	|
+	|
+	|
+	`,
+	`
+	|---------
+	|    |
+	|    O
+	|   -|-
+	|
+	|
+	|
+	`,
+	`
+	|---------
+	|    |
+	|    O
+	|   -|-
+	|     \\
+	|
+	|
+	`,
+	`
+	|---------
+	|    |
+	|    O
+	|   -|-
+	|   / \\
+	|
+	|
+	`,
+	];
+	
 var wins = 0;
 var maxErrors = 9;
 var word = document.getElementById("words");
@@ -47,27 +133,32 @@ document.onkeyup = function(event) {
 }
 //---------------------------------------------------------------------------------------
 function Hangman() {
+	//randomly select a number between 0 and the length of the word list
+	//this number will be used to select the word and the associated picture
 	var number = Math.round(Math.random() * wordList.length)
-
-	this.word = wordList[number];
+	currentWord = wordList[number];
+	
 	this.guessedLetters = [];
 	this.errors = 0;
-	this.visibleLetters = [];
+	this.usedLetters = [];
 	this.gameOver = false;
-	for (var i = 0; i < this.word.length; i++) {
-		this.visibleLetters[i] = (false);
+	for (var i = 0; i < currentWord.length; i++) {
+		this.usedLetters[i] = (false);
 	}
 }
 
 //---------------------------------------------------------------------------------------
 Hangman.prototype.checkGuess = function(char) {
+	//once the input has been verified, it is passed to this function
 	this.guessedLetters.push(char);
 
+	//now you loop through the letters of the current word chosen at random
+	// and make sure the type of input as well as the character matches
 	var isInWord = false;
-	for (var i = 0; i < this.word.length; i++) {
-		if (this.word.charAt(i) === char) {
+	for (var i = 0; i < currentWord.length; i++) {
+		if (currentWord.charAt(i) === char) {
 			isInWord = true;
-			this.visibleLetters[i] = true;
+			this.usedLetters[i] = true;
 		}
 	}
 	if (!isInWord) {
@@ -78,7 +169,7 @@ Hangman.prototype.checkGuess = function(char) {
 		this.gameOver = true;
 	}
 
-	if (!this.visibleLetters.includes(false)) {
+	if (!this.usedLetters.includes(false)) {
 		wins++;
 		this.gameOver = true;
 	}
@@ -89,9 +180,9 @@ Hangman.prototype.checkGuess = function(char) {
 //---------------------------------------------------------------------------------------
 Hangman.prototype.updatePageData = function() {
 	var tempString = "";
-	for (var i = 0; i < this.visibleLetters.length; i++) {
-		tempString += ((this.visibleLetters[i] || this.gameOver) ? this.word.charAt(i).toUpperCase() : "_");
-		if (i < (this.visibleLetters.length - 1)) tempString += " ";
+	for (var i = 0; i < this.usedLetters.length; i++) {
+		tempString += ((this.usedLetters[i] || this.gameOver) ? currentWord.charAt(i).toUpperCase() : "_");
+		if (i < (this.usedLetters.length - 1)) tempString += " ";
 	}
 	word.textContent = tempString;
 
