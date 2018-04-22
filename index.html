@@ -10,11 +10,10 @@
        <link rel="stylesheet" type="text/css" href="assets/css/Style.css">
    </head>
    <script>
-        $(document).ready(function(){
-            $("#words").click(function(){
-                $("p").focus();
-            });
-        });
+                function recipientDivHandler(code, element){
+        $("#recipientsDiv").append('<input type="text" id="toInput" class="inlineBlockElement rightSpacer" style="border:0px none #ffffff; padding:0px; width:40px;margin-bottom:3px;padding:0; overflow:hidden; font-size:11px;" />');
+        setTimeout(function(){$("#toInput").focus();},0);
+        }
    </script>
 
 <body>
