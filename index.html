@@ -1,0 +1,67 @@
+<!DOCtype html>
+<html>
+   <head>
+       <title></title>
+       <meta name="viewport" content="width=device-width, initial-scale=1">
+       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+       <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+   </head>
+
+<body>
+<header>
+    <div class="container col-sm-12" width>
+        <div class="row">
+            <p class="name blinking">Automobile Hangman</p>
+        </div>
+      </div>
+</header>
+
+<!-- cannot use rows and columns without using it in a container -->
+<div class="container-fluid start">
+  <div class="row">
+    <div class="col-sm-12">
+      <h1 class="Press"> Press Any Key to Begin</h1>
+    </div>
+  </div>
+</div> 
+<br>
+
+
+<img class="picture" src="assets/images/audi.png"> 
+
+
+<br>
+
+<div class="container-fluid guesses col-sm-12">
+        <div id="game-div" class=" row panel">
+                    <div id="word-display">
+                        <p id="words"></p>
+                    </div>
+        </div>
+</div>
+
+<br>
+
+<div class="container">
+        <div class="row">
+          <div class="static-bar col-sm-4";>Wins</div>
+          <div class="static-bar col-sm-4";>Guesses Remaining</div>
+          <div class="static-bar col-sm-4";>Letters Guessed</div>
+        </div>
+</div> 
+<div class="container">
+        <div class="row">
+          <div class="dynamic-bar col-sm-3";> <span id="wins"></span></div>
+          <div class="dynamic-bar col-sm-6";> <span id="guesses"></span></div>
+          <div class="dynamic-bar col-sm-3";> <span id="errors"></span></div>
+        </div>
+</div> 
+
+
+<script type="text/javascript" src="./assets/javascript/game.js"></script>
+</body>
+
+
+</html>
