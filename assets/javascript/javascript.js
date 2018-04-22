@@ -9,14 +9,15 @@ var hangmanStages = [
 	`<br>|---------<br>|    |<br>|    O<br>|   -|-<br>|<br>|<br>|<br>`,
 	`<br>|---------<br>|    |<br>|    O<br>|   -|-<br>|     \\<br>|<br>|<br>`,
 	`<br>|---------<br>|    |<br>|    O<br>|   -|-<br>|   / \\<br>|<br>|<br>`,
+	`<br>|---------<br>|    |<br>|    O<br>|   -|-<br>|   / \\<br>|<br>|<br>`
 	];
 	
 var wins = 0;
 var maxErrors = 9;
 var word = document.getElementById("words");
 var Input = document.getElementById("guesses");
-var errorCounter= document.getElementById("errors");
-var winCountElement = document.getElementById("wins");
+var TotalErrors= document.getElementById("errors");
+var NumberOfWins = document.getElementById("wins");
 var alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
 var wordList = [
 	"honda",
@@ -58,15 +59,21 @@ var game = new Hangman();
 document.onkeyup = function(event) {
 	var userInput = event.key;
 
-	if (!game.gameOver) {
+
+	if (!game.Restart) {
 		//only if the input is included in the alphabets list and not included in the guessed letters then check guess
 		if (alphabet.includes(userInput) && !game.guessedLetters.includes(userInput)) {
 			game.checkGuess(userInput);
+			
+			var number = TotalErrors.textContent.charAt(0);
+			
+			document.getElementById("start").innerHTML = hangmanStages[number];
 		}
 		// or else restart the game and reset the page data
 	} else {
 		game = new Hangman();
 		game.updatePageData();
+		document.getElementById("start").innerHTML = hangmanStages[0];
 	}
 }
 //---------------------------------------------------------------------------------------
@@ -81,7 +88,7 @@ function Hangman() {
 	this.guessedLetters = [];
 	this.errors = 0;
 	this.usedLetters = [];
-	this.gameOver = false;
+	this.Restart = false;
 	for (var i = 0; i < currentWord.length; i++) {
 		this.usedLetters[i] = (false);
 	}
@@ -107,24 +114,24 @@ Hangman.prototype.checkGuess = function(char) {
 	}
 
 	if (this.errors >= maxErrors) {
-		this.gameOver = true;
+		this.Restart = true;
 	}
 
 	if (!this.usedLetters.includes(false)) {
 		wins++;
-		this.gameOver = true;
+		this.Restart = true;
 	}
 
 	game.updatePageData();
 };
 
-//document.getElementById("start") = hangmanStages[this.errors];
+
 
 //---------------------------------------------------------------------------------------
 Hangman.prototype.updatePageData = function() {
 	var tempString = "";
 	for (var i = 0; i < this.usedLetters.length; i++) {
-		tempString += ((this.usedLetters[i] || this.gameOver) ? currentWord.charAt(i).toUpperCase() : "_");
+		tempString += ((this.usedLetters[i] || this.Restart) ? currentWord.charAt(i).toUpperCase() : "_");
 		if (i < (this.usedLetters.length - 1)) tempString += " ";
 	}
 	word.textContent = tempString;
@@ -134,24 +141,26 @@ Hangman.prototype.updatePageData = function() {
 		tempString += (this.guessedLetters[i].toUpperCase());
 		if (i < (this.guessedLetters.length - 1)) tempString += " ";
 	}
-	for (var i = tempString.length; i < 51; i++) {
+	for (var i = tempString.length; i < 100; i++) {
 		tempString += " ";
 	}
 	Input.textContent = tempString;
 
+	
 	tempString = this.errors + " / " + maxErrors;
-	for (var i = tempString.length; i < 32; i++) {
+	for (var i = tempString.length; i < 100; i++) {
 		tempString += " ";
 	}
-	errorCounter.textContent = tempString;
-
+	TotalErrors.textContent = tempString;
+	
 	tempString = wins + "";
-	for (var i = tempString.length; i < 45; i++) {
+	for (var i = tempString.length; i < 100; i++) {
 		tempString += " ";
 	}
-	winCountElement.textContent = tempString;
+	NumberOfWins.textContent = tempString;
 
 }
+
 
 game.updatePageData();
 //---------------------------------------------------------------------------------------
