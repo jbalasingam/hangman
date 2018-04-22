@@ -1,88 +1,14 @@
 //Set the variables for the automobile hangman game
 var hangmanStages = [
-	`
-	`,
-	`
-	|
-	|
-	|
-	|
-	|
-	|
-	|
-	`,
-	`
-	|---------
-	|
-	|
-	|
-	|
-	|
-	|
-	`,
-	`
-	|---------
-	|    |
-	|
-	|
-	|
-	|
-	|
-	`,
-	`
-	|---------
-	|    |
-	|    O
-	|
-	|
-	|
-	|
-	`,
-	`
-	|---------
-	|    |
-	|    O
-	|    |
-	|
-	|
-	|
-	`,
-	`
-	|---------
-	|    |
-	|    O
-	|    |-
-	|
-	|
-	|
-	`,
-	`
-	|---------
-	|    |
-	|    O
-	|   -|-
-	|
-	|
-	|
-	`,
-	`
-	|---------
-	|    |
-	|    O
-	|   -|-
-	|     \\
-	|
-	|
-	`,
-	`
-	|---------
-	|    |
-	|    O
-	|   -|-
-	|   / \\
-	|
-	|
-	`,
+	`<br>|<br>|<br>|<br>|<br>|<br>|<br>|<br>`,
+	`<br>|---------<br>|<br>|<br>|<br>|<br>|<br>|<br>`,
+	`<br>|---------<br>|    |<br>|<br>|<br>|<br>|<br>|<br>`,
+	`<br>|---------<br>|    |<br>|    O|<br>|<br>|<br>|<br>`,
+	`<br>|---------<br>|    |<br>|    O<br>|    |<br>|<br>|<br>|<br>`,
+	`<br>|---------<br>|    |<br>|    O<br>|    |-<br>|<br>|<br>|<br>`,
+	`<br>|---------<br>|    |<br>|    O<br>|   -|-<br>|<br>|<br>|<br>`,
+	`<br>|---------<br>|    |<br>|    O<br>|   -|-<br>|     \\<br>|<br>|<br>`,
+	`<br>|---------<br>|    |<br>|    O<br>|   -|-<br>|   / \\<br>|<br>|<br>`,
 	];
 	
 var wins = 0;
@@ -104,13 +30,25 @@ var wordList = [
 	"koenigsegg",
 	"maserati",
 	"bugatti",
-	"bentley"
+	"bentley",
+	"bmw"
 	]
 //set an array of pictures to use with the words
-var imgArray = new Array();
-
-imgArray[0] = new Image();
-imgArray[0].src = 'images/img/Splash_image1.jpg';
+var imgArray = [
+	"assets/images/honda.png",
+	"assets/images/audi.png",
+	"assets/images/ferrari.png",
+	"assets/images/jaguar.png",
+	"assets/images/lexus.png",
+	"assets/images/mercedes.png",
+	"assets/images/lamborghini.png",
+	"assets/images/porsche.png",
+	"assets/images/koenigsegg.png",
+	"assets/images/maserati.png",
+	"assets/images/bugatti.png",
+	"assets/images/bentley.png",
+	"assets/images/bmw.png"
+	]
 
 //Always start a new game
 var game = new Hangman();
@@ -135,8 +73,10 @@ document.onkeyup = function(event) {
 function Hangman() {
 	//randomly select a number between 0 and the length of the word list
 	//this number will be used to select the word and the associated picture
-	var number = Math.round(Math.random() * wordList.length)
+	var number = Math.floor(Math.random() * wordList.length)
 	currentWord = wordList[number];
+
+	document.getElementById("picture").src = imgArray[number];
 	
 	this.guessedLetters = [];
 	this.errors = 0;
@@ -146,6 +86,7 @@ function Hangman() {
 		this.usedLetters[i] = (false);
 	}
 }
+
 
 //---------------------------------------------------------------------------------------
 Hangman.prototype.checkGuess = function(char) {
@@ -176,6 +117,8 @@ Hangman.prototype.checkGuess = function(char) {
 
 	game.updatePageData();
 };
+
+//document.getElementById("start") = hangmanStages[this.errors];
 
 //---------------------------------------------------------------------------------------
 Hangman.prototype.updatePageData = function() {
