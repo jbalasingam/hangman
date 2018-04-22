@@ -109,6 +109,7 @@ Hangman.prototype.checkGuess = function(char) {
 			this.usedLetters[i] = true;
 		}
 	}
+	
 	if (!isInWord) {
 		this.errors++;
 	}
