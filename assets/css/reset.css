@@ -1,128 +1,48 @@
-/*General Structure of the Page-----------------------------------------------------------------*/
-/*this allows for the sticky footer, using flex*/
-html, body {
-    height: 100%;
-    margin:0px; 
-    padding:0px;
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
 }
-  
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
 body {
-    display: flex;
-    flex-direction: column;
+	line-height: 1;
 }
-
-.content {
-    width: 960px;
-    float: center;
-    margin: auto;
-    overflow: auto;
-    flex: 1 0 auto;
+ol, ul {
+	list-style: none;
 }
-
-
-/* styling for the header*/
-header {
-    background-color: #ffffff;
-    border-style: solid;
-    border-color: #cccccc;
-    border-width: 3px;
-    padding: 35px;
-    position: relative;
-    margin: -11px;
-
+blockquote, q {
+	quotes: none;
 }
-
-/* styling for everything within the main content box*/
-.within {
-    max-width: 960px;
-    float: center;
-    margin: auto;
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
 }
-
-.name {
-    background-color:#4aaaa5;
-    color: white;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 35px;
-    background-color:#4aaaa5;
-    padding:35px;
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
 }
-
-
-a.links {
-    float: right;
-    text-align: center;
-    color: #777777;
-font-family: Arial, Helvetica, sans-serif; 
-    background-color: transparent; 
-    text-decoration: none;
-    margin-top: 10px;
-}
-
-a:hover {
-    color:red;
-}
-
-
-
-/* styling for the text in the main content box*/
-div.content {
-    background-color:#ffffff;
-    width: 960px;
-    border-style: solid;
-    border-color:#dddddd;
-    border-width: 1px;
-    margin-top: 38px;
-    padding:25px;
-}
-
-
-/* styling for the title - in this case my name*/
-.title {
-color: #4aaaa5;
-font-family: Georgia, 'Times New Roman', Times, serif;
-margin: 0;
-font-size:35px;
-text-align: left;
-margin-top: 10px;
-margin-bottom:-20px;
-}
-
-/*styling for the line below the title separating the content*/
-.line {
-    max-width: 960px;
-    float: center;
-    margin-top: 50px;
-    display: block;
-    height: 2px;
-    border: 0;
-    border-top: 2px solid #cccccc;
-
-}
-
-/* styling for the footer*/
-
-.footer {
-    background-color: #666666;
-    height: 60px;
-    border-top: 5px solid #4aaaa5;
-    flex-shrink: 0;
-    text-align: center;
-    margin-top: 20px;
-}
-
-.copyright{
-    position:relative;
-    bottom:-30px;
-    font-size: 18px;
-}
-
-
-/*styling for the image*/
-img {
-    margin-top:0px;
-    padding: 25px;
-    height: 206px;
-    width: 271px;
-}
-
