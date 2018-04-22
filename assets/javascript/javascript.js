@@ -12,8 +12,6 @@ var hangmanStages = [
 	`<br>|---------<br>|    |<br>|    O<br>|   -|-<br>|   / \\<br>|<br>|<br>`
 	];
 
-$("#textinput").trigger("tap"); 
-
 var wins = 0;
 var maxErrors = 9;
 var word = document.getElementById("words");
