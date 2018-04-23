@@ -56,27 +56,30 @@ var game = new Hangman();
 
 //---------------------------------------------------------------------------------------
 //listen for user input and make sure 
-document.onkeyup = function(event) {
-	
-	var userInput = event.key;
+
+	//code
+document.onkeypress= function(event) { 
+		var userInput = event.key;
 
 
-	if (!game.Restart) {
-		//only if the input is included in the alphabets list and not included in the guessed letters then check guess
-		if (alphabet.includes(userInput) && !game.guessedLetters.includes(userInput)) {
-			game.checkGuess(userInput);
-			
-			var number = TotalErrors.textContent.charAt(0);
-			
-			document.getElementById("start").innerHTML = hangmanStages[number];
+		if (!game.Restart) {
+			//only if the input is included in the alphabets list and not included in the guessed letters then check guess
+			if (alphabet.includes(userInput) && !game.guessedLetters.includes(userInput)) {
+				game.checkGuess(userInput);
+				
+				var number = TotalErrors.textContent.charAt(0);
+				
+				document.getElementById("start").innerHTML = hangmanStages[number];
+			}
+			// or else restart the game and reset the page data
+		} else {
+			game = new Hangman();
+			game.updatePageData();
+			document.getElementById("start").innerHTML = hangmanStages[0];
 		}
-		// or else restart the game and reset the page data
-	} else {
-		game = new Hangman();
-		game.updatePageData();
-		document.getElementById("start").innerHTML = hangmanStages[0];
 	}
-}
+	//code
+
 //---------------------------------------------------------------------------------------
 function Hangman() {
 	//randomly select a number between 0 and the length of the word list
